@@ -6,7 +6,7 @@
           <a href="{{ route('home') }}" class="hover:text-indigo-500">Home</a>
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
           <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
-          <a href="#" class="hover:text-indigo-500">Dashboard</a>
+          <a href="{{ route('OwnerDashboard') }}" class="hover:text-indigo-500">Dashboard</a>
           <button
               class="bg-indigo-500 px-8 py-2 text-white rounded hover:bg-indigo-600 cursor-pointer transition-all duration-200">
               <i class="ri-login-circle-line"></i>
@@ -28,7 +28,7 @@
           <a href="{{ route('home') }}" class="hover:text-indigo-500">Home</a>
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
           <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
-          <a href="#" class="hover:text-indigo-500">Dashboard</a>
+          <a href="{{ route('OwnerDashboard') }}" class="hover:text-indigo-500">Dashboard</a>
           <button
               class="bg-indigo-500 px-8 py-2 text-white rounded hover:bg-indigo-600 cursor-pointer transition-all duration-200">Login</button>
           <button class="cursor-pointer md:hidden block absolute top-6 right-6" id="close-menu">
