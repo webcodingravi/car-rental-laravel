@@ -1,10 +1,12 @@
-   <footer class="md:px-32 px-6 text-gray-500 text-sm">
-       <div class="flex flex-wrap justify-between items-center gap-8 pb-6 md:gap-6 border-slate-200 border-b">
-           <div>
+   <footer class="md:px-32 px-6 text-gray-500 text-sm   pt-14">
+       <div
+           class="grid md:grid-cols-4 grid-cols-1 items-center justify-center gap-8 pb-6 md:gap-8 border-slate-200 border-b">
+           <div class="md:col-span-2">
                <img src="{{ asset('image/logo/logo.svg') }}" class="md:h-11 h-10" alt="">
-               <p class="max-w-80 mt-3">
-                   Premium car rental service with a wide selection of luxury and everyday vehicles for all your driving
-                   needs.
+               <p class="max-w-160 mt-3">
+                   SIXT provides a wide range of premium vehicles, from convertibles to SUVs, across over 2,000
+                   locations in more than 105 countries. They emphasize transparent pricing with no hidden costs and
+                   offer flexible options like pay-later and car subscriptions
 
                </p>
 
@@ -24,13 +26,14 @@
                    <li><a href="#">Home</a></li>
                    <li><a href="#">About Us</a></li>
                    <li><a href="#">Browse Cars</a></li>
-                   <li><a href="#">List Your Car</a></li>
+                   <li><a href="#">Terms of Service</a></li>
+                   <li><a href="#">Privacy Policy</a></li>
                </ul>
 
            </div>
 
 
-           <div>
+           {{-- <div>
                <h2 class="text-base font-medium uppercase text-gray-800">Resources</h2>
                <ul class="text-sm flex flex-col gap-1.5 mt-3">
                    <li><a href="#">Help Center</a></li>
@@ -39,10 +42,10 @@
                    <li><a href="#">Insurance</a></li>
                </ul>
 
-           </div>
+           </div> --}}
 
            <div>
-               <h2 class="text-base font-medium uppercase text-gray-800">Quick Links</h2>
+               <h2 class="text-base font-medium uppercase text-gray-800">Contact</h2>
                <ul class="text-sm flex flex-col gap-1.5 mt-3">
                    <li> 1234 Luxury Drive</li>
                    <li>San Francisco,CA 94107</li>

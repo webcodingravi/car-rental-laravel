@@ -5,7 +5,7 @@
             <div class="flex flex-col gap-4 max-w-3xl text-center">
                 <h1 class="text-5xl font-bold">Luxury cars on Rent</h1>
                 <div
-                    class="bg-white shadow-xl rounded-2xl p-9 flex md:gap-7 md:flex-row flex-col gap-6 md:items-center justify-center items-start my-8">
+                    class="bg-white shadow-xl rounded-2xl p-9 flex md:gap-7 md:flex-row flex-col gap-6 md:items-center justify-center items-start my-8 text-gray-800">
                     <div class="flex flex-col gap-1 items-start">
                         <label>Location</label>
                         <select name="" class="border border-slate-300 px-3 py-2 rounded-md focus:outline-none">
@@ -54,209 +54,230 @@
             </div>
 
             <div class="grid md:grid-cols-4 grid-cols-1 gap-8 md:px-32 p-6 mt-8">
-                <div
-                    class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
+                <a href="{{ route('CarDetail') }}">
+                    <div
+                        class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
-                    <div class="relative overflow-hidden h-48">
-                        <img src="{{ asset('image/car_image1.png') }}" alt="car image"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-105" />
-                        <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
-                            Available Now</p>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="{{ asset('image/car_image1.png') }}" alt="car image"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                            <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
+                                Available Now</p>
 
-                        <div class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                            <span class="font-semibold">$160</span>
-                            <span class="font-semibold text-white/80 text-sm">/day</span>
+                            <div
+                                class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
+                                <span class="font-semibold">$160</span>
+                                <span class="font-semibold text-white/80 text-sm">/day</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 sm:p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+
+                                    <h3 class="text-lg font-medium">BMW X5</h3>
+                                    <p class="text-sm text-muted-forground">SUV • 2006</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-group-line mr-1 font-medium text-md"></i>
+                                    <span>Seats</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
+                                    <span>Hybrid</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
+                                    <span>Semi-Automatic</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
+                                    <span>Delhi</span>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
+                </a>
 
-                    <div class="p-4 sm:p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
+                <a href="{{ route('CarDetail') }}">
+                    <div
+                        class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
-                                <h3 class="text-lg font-medium">BMW X5</h3>
-                                <p class="text-sm text-muted-forground">SUV • 2006</p>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="{{ asset('image/car_image1.png') }}" alt="car image"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                            <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
+                                Available Now</p>
+
+                            <div
+                                class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
+                                <span class="font-semibold">$160</span>
+                                <span class="font-semibold text-white/80 text-sm">/day</span>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-group-line mr-1 font-medium text-md"></i>
-                                <span>Seats</span>
+                        <div class="p-4 sm:p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+
+                                    <h3 class="text-lg font-medium">BMW X5</h3>
+                                    <p class="text-sm text-muted-forground">SUV • 2006</p>
+                                </div>
                             </div>
 
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
-                                <span>Hybrid</span>
+                            <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-group-line mr-1 font-medium text-md"></i>
+                                    <span>Seats</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
+                                    <span>Hybrid</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
+                                    <span>Semi-Automatic</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
+                                    <span>Delhi</span>
+                                </div>
+
+
                             </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
-                                <span>Semi-Automatic</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
-                                <span>Delhi</span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-
-                    <div class="relative overflow-hidden h-48">
-                        <img src="{{ asset('image/car_image2.png') }}" alt="car image"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-105" />
-                        <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
-                            Available Now</p>
-
-                        <div class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                            <span class="font-semibold">$160</span>
-                            <span class="font-semibold text-white/80 text-sm">/day</span>
-                        </div>
-                    </div>
-
-                    <div class="p-4 sm:p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-
-                                <h3 class="text-lg font-medium">BMW X5</h3>
-                                <p class="text-sm text-muted-forground">SUV • 2006</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-group-line mr-1 font-medium text-md"></i>
-                                <span>Seats</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
-                                <span>Hybrid</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
-                                <span>Semi-Automatic</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
-                                <span>Delhi</span>
-                            </div>
-
-
                         </div>
                     </div>
-                </div>
-                <div
-                    class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
+                </a>
 
-                    <div class="relative overflow-hidden h-48">
-                        <img src="{{ asset('image/car_image3.png') }}" alt="car image"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-105" />
-                        <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
-                            Available Now</p>
+                <a href="{{ route('CarDetail') }}">
+                    <div
+                        class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
-                        <div class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                            <span class="font-semibold">$160</span>
-                            <span class="font-semibold text-white/80 text-sm">/day</span>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="{{ asset('image/car_image1.png') }}" alt="car image"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                            <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
+                                Available Now</p>
+
+                            <div
+                                class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
+                                <span class="font-semibold">$160</span>
+                                <span class="font-semibold text-white/80 text-sm">/day</span>
+                            </div>
+                        </div>
+
+                        <div class="p-4 sm:p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+
+                                    <h3 class="text-lg font-medium">BMW X5</h3>
+                                    <p class="text-sm text-muted-forground">SUV • 2006</p>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-group-line mr-1 font-medium text-md"></i>
+                                    <span>Seats</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
+                                    <span>Hybrid</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
+                                    <span>Semi-Automatic</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
+                                    <span>Delhi</span>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
+                </a>
 
-                    <div class="p-4 sm:p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
+                <a href="{{ route('CarDetail') }}">
+                    <div
+                        class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
-                                <h3 class="text-lg font-medium">BMW X5</h3>
-                                <p class="text-sm text-muted-forground">SUV • 2006</p>
+                        <div class="relative overflow-hidden h-48">
+                            <img src="{{ asset('image/car_image1.png') }}" alt="car image"
+                                class="w-full h-full object-cover transition-transform group-hover:scale-105" />
+                            <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
+                                Available Now</p>
+
+                            <div
+                                class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
+                                <span class="font-semibold">$160</span>
+                                <span class="font-semibold text-white/80 text-sm">/day</span>
                             </div>
                         </div>
 
-                        <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-group-line mr-1 font-medium text-md"></i>
-                                <span>Seats</span>
+                        <div class="p-4 sm:p-5">
+                            <div class="flex justify-between items-start mb-2">
+                                <div>
+
+                                    <h3 class="text-lg font-medium">BMW X5</h3>
+                                    <p class="text-sm text-muted-forground">SUV • 2006</p>
+                                </div>
                             </div>
 
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
-                                <span>Hybrid</span>
+                            <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-group-line mr-1 font-medium text-md"></i>
+                                    <span>Seats</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
+                                    <span>Hybrid</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
+                                    <span>Semi-Automatic</span>
+                                </div>
+
+                                <div class="flex items-center text-md text-muted-forground">
+                                    <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
+                                    <span>Delhi</span>
+                                </div>
+
+
                             </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
-                                <span>Semi-Automatic</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
-                                <span>Delhi</span>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <div
-                    class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
-
-                    <div class="relative overflow-hidden h-48">
-                        <img src="{{ asset('image/car_image4.png') }}" alt="car image"
-                            class="w-full h-full object-cover transition-transform group-hover:scale-105" />
-                        <p class="absolute top-4 left-4 bg-indigo-500 text-white text-xs px-2.5 py-1 rounded-full">
-                            Available Now</p>
-
-                        <div class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                            <span class="font-semibold">$160</span>
-                            <span class="font-semibold text-white/80 text-sm">/day</span>
-                        </div>
-                    </div>
-
-                    <div class="p-4 sm:p-5">
-                        <div class="flex justify-between items-start mb-2">
-                            <div>
-
-                                <h3 class="text-lg font-medium">BMW X5</h3>
-                                <p class="text-sm text-muted-forground">SUV • 2006</p>
-                            </div>
-                        </div>
-
-                        <div class="grid grid-cols-2 mt-4 gap-y-2 text-gray-600">
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-group-line mr-1 font-medium text-md"></i>
-                                <span>Seats</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-charging-pile-line mr-1 font-medium text-md"></i>
-                                <span>Hybrid</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-roadster-fill mr-1 font-medium text-md"></i>
-                                <span>Semi-Automatic</span>
-                            </div>
-
-                            <div class="flex items-center text-md text-muted-forground">
-                                <i class="ri-map-pin-line mr-1 font-medium text-md"></i>
-                                <span>Delhi</span>
-                            </div>
-
-
                         </div>
                     </div>
-                </div>
+                </a>
+            </div>
+
+            <div class="flex justify-center">
+                <a href="{{ route('cars') }}"
+                    class="w-fit gap-2 px-6 py-2 border border-slate-200 hover:bg-gray-50 rounded-md mt-18 cursor-pointer">Explore
+                    All Cars <i class="ri-arrow-right-line"></i></a>
+            </div>
+
         </section>
 
         {{-- Banner section --}}
         <section
-            class="banner bg-gradient-to-r from-[#615fff] to [#A9CFFF]  rounded-2xl overflow-hidden flex flex-col md:flex-row md:items-start items-center justify-between  pt-10 mx-6 md:mx-32 px-8">
+            class="banner bg-gradient-to-r from-[#615fff] to [#A9CFFF]  rounded-2xl overflow-hidden flex flex-col md:flex-row md:items-start items-center justify-between  pt-10 mx-6 md:mx-32 px-8 ">
             <div class="text-white ">
                 <h2 class="text-3xl font-medium">Do You Own a Luxury Car?</h2>
                 <p class="mt-2">Mentize your vehicle effortlessly by listing it on CarRental.</p>
