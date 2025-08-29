@@ -1,8 +1,8 @@
 @extends('owner.layouts.app')
 @section('content')
     <div class="px-4 pt-10 md:px-10 flex-1">
-        <h1 class='font-medium text-3xl'>Add New Car</h1>
-        <p class='text-sm md:text-base text-gray-500/90 mt-2 max-w-156'>Fill in details to list a new car for booking,
+        <h1 class='font-medium text-3xl'>Edit Car</h1>
+        <p class='text-sm md:text-base text-gray-500/90 mt-2 max-w-156'>Edit in details to list a car for booking,
             including pricing, availability, and car specifications.</p>
 
         <form action="" method="post" class="flex flex-col gap-5 text-gray-500 text-sm mt-6 max-w-xl">
@@ -122,7 +122,7 @@
             <button
                 class="flex items-center gap-2 px-4 py-2.5 mt-2 bg-indigo-500 hover:bg-indigo-600 text-white rounded-md font-medium w-max cursor-pointer">
                 <i class="ri-checkbox-circle-line"></i>
-                List Your Car
+                Car Update
             </button>
 
 

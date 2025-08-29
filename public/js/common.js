@@ -9,3 +9,4 @@ menuBtn.addEventListener("click", () => {
 closeMenu.addEventListener("click", () => {
     MobileMenu.classList.add("-translate-x-full")
 })
+
