@@ -11,6 +11,8 @@ class OwnerController extends Controller
     }
 
 
+
+
     public function AddCar() {
         return view('owner.AddCar');
     }
@@ -26,4 +28,8 @@ class OwnerController extends Controller
       public function ManageBookings() {
         return view('owner.ManageBookings');
     }
+
+
+
+
 }

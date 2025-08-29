@@ -15,7 +15,7 @@
 </head>
 
 <body>
-    @include('layouts.header', ['userLogin'])
+    @include('layouts.header', ['userLogin', 'listCars'])
 
 
     @yield('content')
@@ -132,6 +132,36 @@
                         }
                     })
                 }
+            })
+
+
+
+            // list cars
+            $("body").delegate('#listCars', "click", function() {
+                $.ajax({
+                    url: "{{ route('listCars') }}",
+                    method: "get",
+                    success: function(res) {
+                        if (res.status == true) {
+                            new Swal({
+                                icon: "success",
+                                title: res.message
+                            }).then(() => {
+                                location.reload()
+                            })
+                        } else {
+                            new Swal({
+                                icon: "error",
+                                title: res.message
+                            })
+                        }
+                    },
+                    error: function(jqXHR, textStatus, errorThrown) {
+                        console.error('AJAX Error', textStatus, errorThrown);
+                        alert('An error occurred:' + errorThrown)
+                    }
+
+                })
             })
         })
     </script>
