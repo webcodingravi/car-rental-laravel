@@ -7,7 +7,8 @@
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
           <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
           @if (Auth::check() && Auth::user()->role == 'owner')
-              <a href="#" class="hover:text-indigo-500 cursor-pointer focus:outline-none">Dashboard</button>
+              <a href="{{ route('OwnerDashboard') }}"
+                  class="hover:text-indigo-500 cursor-pointer focus:outline-none">Dashboard</button>
               @else
                   <button class="hover:text-indigo-500 cursor-pointer focus:outline-none" id="listCars">List
                       cars</button>

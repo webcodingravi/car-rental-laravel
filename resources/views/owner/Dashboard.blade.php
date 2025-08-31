@@ -9,7 +9,7 @@
             <div class='flex gap-2 items-center justify-between p-4 rounded-md border border-slate-200'>
                 <div>
                     <h1 class='text-xs text-gray-500'>Total Cars</h1>
-                    <p class='text-lg font-semibold'>4</p>
+                    <p class='text-lg font-semibold'>{{ $cars }}</p>
                 </div>
                 <div class='flex items-center justify-center w-10 h-10 rounded full bg-indigo-500/10'>
                     <i class="ri-car-line text-xl text-indigo-600"></i>
@@ -19,7 +19,7 @@
             <div class='flex gap-2 items-center justify-between p-4 rounded-md border border-slate-200'>
                 <div>
                     <h1 class='text-xs text-gray-500'>Total Bookings</h1>
-                    <p class='text-lg font-semibold'>0</p>
+                    <p class='text-lg font-semibold'>{{ $bookings }}</p>
                 </div>
                 <div class='flex items-center justify-center w-10 h-10 rounded full bg-indigo-500/10'>
                     <i class="ri-survey-line text-xl text-indigo-600"></i>
@@ -32,7 +32,7 @@
             <div class='flex gap-2 items-center justify-between p-4 rounded-md border border-slate-200'>
                 <div>
                     <h1 class='text-xs text-gray-500'>Pending</h1>
-                    <p class='text-lg font-semibold'>0</p>
+                    <p class='text-lg font-semibold'>{{ $pendingBookings }}</p>
                 </div>
                 <div class='flex items-center justify-center w-10 h-10 rounded full bg-indigo-500/10'>
                     <i class="ri-alert-line text-xl text-indigo-600"></i>
@@ -44,7 +44,7 @@
             <div class='flex gap-2 items-center justify-between p-4 rounded-md border border-slate-200'>
                 <div>
                     <h1 class='text-xs text-gray-500'>Confirmed</h1>
-                    <p class='text-lg font-semibold'>0</p>
+                    <p class='text-lg font-semibold'>{{ $completedBookings }}</p>
                 </div>
                 <div class='flex items-center justify-center w-10 h-10 rounded full bg-indigo-500/10'>
                     <i class="ri-checkbox-circle-line text-xl text-indigo-600"></i>
@@ -57,22 +57,26 @@
             <div class='p-4 md:p-6 border border-slate-200 rounded-md max-w-lg w-full'>
                 <h1 class='text-lg font-medium'>Recent Bookings</h1>
                 <p class='text-gray-500'>Latest customer bookings</p>
-                <div class='mt-4 flex items-center justify-between'>
-                    <div class='flex items-center gap-2'>
-                        <div class='hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500/10'>
-                            <i class="ri-survey-line text-xl text-indigo-600"></i>
-                        </div>
-                        <div>
-                            <p>Jeep Wrangler</p>
-                            <p class='text-sm text-gray-500'>2025-08-27</p>
-                        </div>
-                    </div>
 
-                    <div class='flex items-center gap-2 font-medium'>
-                        <p class='text-sm text-gray-500'>$160</p>
-                        <p class='px-3 py-0.5 border border-slate-200 rounded-full text-sm'>pending</p>
+                @foreach ($recentBookings as $booking)
+                    <div class='mt-4 flex items-center justify-between'>
+                        <div class='flex items-center gap-2'>
+                            <div class='hidden md:flex items-center justify-center w-12 h-12 rounded-full bg-indigo-500/10'>
+                                <i class="ri-survey-line text-xl text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <p>{{ $booking->brand }} {{ $booking->model }}</p>
+                                <p class='text-sm text-gray-500'>{{ $booking->pickupDate }} To {{ $booking->returnDate }}
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class='flex items-center gap-2 font-medium'>
+                            <p class='text-sm text-gray-500'>${{ $booking->price }}</p>
+                            <p class='px-3 py-0.5 border border-slate-200 rounded-full text-sm'>{{ $booking->status }}</p>
+                        </div>
                     </div>
-                </div>
+                @endforeach
 
             </div>
 
@@ -80,7 +84,7 @@
             <div class='p-4 md:p-6 mb-6 border border-slate-200 rounded-md w-full md:max-w-xs'>
                 <h1 class='text-lg font-medium'>Monthly Revenue</h1>
                 <p class='text-gray-500'>Revenue for current month</p>
-                <p class='text-3xl mt-6 font-semibold text-indigo-500'>$0</p>
+                <p class='text-3xl mt-6 font-semibold text-indigo-500'>${{ $monthlyRevenuebookings }}</p>
             </div>
         </div>
 

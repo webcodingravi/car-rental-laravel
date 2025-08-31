@@ -13,31 +13,31 @@
                         class="w-full h-auto object-cover rounded-xl mb-6 shadow-md md:max-h-120">
 
                     <div>
-                        <h1 class="text-3xl font-bold">BMW X5</h1>
-                        <p class="text-gray-500 text-lg">SUV • 2016</p>
+                        <h1 class="text-3xl font-bold">{{ $carDetail->brand }} {{ $carDetail->model }}</h1>
+                        <p class="text-gray-500 text-lg">{{ $carDetail->category }} • {{ $carDetail->year }}</p>
                     </div>
                     <hr class="border border-gray-100 my-6" />
                     <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                         <div class="flex flex-col items-center bg-slate-100 p-4 rounded-lg">
                             <i class="ri-group-line text-xl text-slate-600"></i>
-                            <span class="text-slate-600">4 Seats</span>
+                            <span class="text-slate-600">{{ $carDetail->seating_capacity }} Seats</span>
                         </div>
 
                         <div class="flex flex-col items-center bg-slate-100 p-4 rounded-lg">
                             <i class="ri-charging-pile-line text-xl text-slate-600"></i>
-                            <span class="text-slate-600">Hybrid</span>
+                            <span class="text-slate-600">{{ $carDetail->fuel_type }}</span>
                         </div>
 
                         <div class="flex flex-col items-center bg-slate-100 p-4 rounded-lg">
                             <i class="ri-roadster-fill text-xl text-slate-600"></i>
-                            <span class="text-slate-600">Semi-Automatic</span>
+                            <span class="text-slate-600">{{ $carDetail->transmission }}</span>
 
                         </div>
 
 
                         <div class="flex flex-col items-center bg-slate-100 p-4 rounded-lg">
                             <i class="ri-map-pin-line text-xl text-slate-600"></i>
-                            <span class="text-slate-600">Delhi</span>
+                            <span class="text-slate-600">{{ $carDetail->location }}</span>
                         </div>
 
                     </div>
@@ -46,10 +46,7 @@
                     {{-- description --}}
                     <div class="pt-10">
                         <h1 class="text-xl font-medium mb-3">Description</h1>
-                        <p class="text-gray-500">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi atque
-                            praesentium optio eveniet.
-                            Laborum, nesciunt quidem! Commodi provident dolores accusamus neque, eius qui repudiandae libero
-                            eum, sapiente, quis et soluta!</p>
+                        <p class="text-gray-500">{{ $carDetail->description }}</p>
                     </div>
 
                     {{-- Features --}}
@@ -99,32 +96,76 @@
                 </div>
 
                 {{-- right side --}}
-                <div class="h-max shadow-lg sticky top-0 left-0 rounded-xl p-6 text-gray-500 space-y-6">
-                    <p class="flex items-center justify-between text-2xl text-gray-800 font-semibold">
-                        $160 <span class="text-base font-normal text-gray-400">per day</span>
-                    </p>
-                    <hr class="border border-slate-200 my-6" />
-                    <div class="flex flex-col gap-2">
-                        <label>Pickup Date</label>
-                        <input type="date" name="pickup-date"
+
+                <form id="booking" method="post">
+                    @csrf
+                    <div class="h-max shadow-lg sticky top-0 left-0 rounded-xl p-6 text-gray-500 space-y-6">
+                        <p class="flex items-center justify-between text-2xl text-gray-800 font-semibold" id="price">
+                            ${{ $carDetail->pricePerDay }} <span class="text-base font-normal text-gray-400">per day</span>
+                        </p>
+                        <hr class="border border-slate-200 my-6" />
+                        <input type="text" name="car_id" value="{{ $carDetail->id }}" hidden
                             class="border border-slate-200 px-3 py-2 rounded-lg focus:outline-none">
+                        <div class="flex flex-col gap-2">
+                            <label>Pickup Date</label>
+                            <input type="date" name="pickupDate"
+                                class="border border-slate-200 px-3 py-2 rounded-lg focus:outline-none">
+                        </div>
+                        <div class="flex flex-col gap-2">
+                            <label>Return Date</label>
+                            <input type="date" name="returnDate"
+                                class="border border-slate-200 px-3 py-2 rounded-lg focus:outline-none">
+                        </div>
+
+                        <button
+                            class="bg-indigo-500 cursor-pointer w-full text-white rounded-xl font-medium py-3 hover:bg-indigo-600">Book
+                            Now</button>
+
+                        <p class="text-center text-sm">No credit card required to reserve</p>
+
+
                     </div>
-                    <div class="flex flex-col gap-2">
-                        <label>Return Date</label>
-                        <input type="date" name="return-date"
-                            class="border border-slate-200 px-3 py-2 rounded-lg focus:outline-none">
-                    </div>
+                </form>
 
-                    <button
-                        class="bg-indigo-500 cursor-pointer w-full text-white rounded-xl font-medium py-3 hover:bg-indigo-600">Book
-                        Now</button>
-
-                    <p class="text-center text-sm">No credit card required to reserve</p>
-
-
-                </div>
             </div>
         </div>
 
     </main>
+@endsection
+
+@section('script')
+    <script>
+        $('body').delegate("#booking", "submit", function(e) {
+            e.preventDefault()
+            $.ajax({
+                url: "{{ route('createBooking') }}",
+                method: "post",
+                data: $(this).serialize(),
+                dataType: "json",
+                success: function(res) {
+                    if (res.status == true) {
+                        new Swal({
+                            icon: 'success',
+                            title: res.message
+                        }).then(() => {
+                            location.reload();
+                        })
+
+                    } else {
+                        new Swal({
+                            icon: 'error',
+                            title: res.message
+                        }).then(() => {
+                            location.reload();
+                        })
+                    }
+                },
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.error('AJAX Error', textStatus, errorThrown);
+                    alert('An error occurred:' + errorThrown)
+                }
+
+            })
+        })
+    </script>
 @endsection

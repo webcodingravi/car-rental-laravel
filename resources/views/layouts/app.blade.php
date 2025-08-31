@@ -46,6 +46,7 @@
             let state = 'login';
             const formTitle = document.getElementById('form-title');
             const nameField = document.getElementById('name-field');
+            const nameMobile = document.getElementById('mobile-field');
             const toggleText = document.getElementById('toggle-text');
             const toggleLink = document.getElementById('toggle-link');
             const submitButton = document.getElementById('submit-button');
@@ -54,6 +55,7 @@
                 state = (state === 'login') ? 'register' : 'login';
                 formTitle.textContent = (state === 'login') ? 'Login' : 'Sign Up';
                 nameField.style.display = (state === 'register') ? 'block' : 'none';
+                nameMobile.style.display = (state === 'register') ? 'block' : 'none';
                 submitButton.textContent = (state === 'register') ? 'Create Account' : 'Login';
                 toggleText.textContent = (state === 'register') ?
                     'Already have account?' :
@@ -83,11 +85,13 @@
 
                             } else {
                                 if (res.error['name'] || res.error['email'] || res.error[
+                                        'mobile'] || res.error[
                                         'password']) {
                                     new Swal({
                                         icon: "error",
                                         title: res.error['name'] ||
                                             res.error['email'] ||
+                                            res.error['mobile'] ||
                                             res.error['password']
                                     })
                                 }

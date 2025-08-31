@@ -20,6 +20,12 @@
 
         </div>
 
+        <div class="w-full" id="mobile-field" style="display: none;">
+            <p>Mobile No.</p>
+            <input id="mobile" name="mobile" type="number" placeholder="Enter Your Mobile"
+                class="border border-gray-200 rounded w-full p-2 mt-1 outline-indigo-500" />
+        </div>
+
         <div class="w-full">
             <p>Password</p>
             <input id="password" name="password" type="password" placeholder="Enter Your Password"

@@ -1,27 +1,35 @@
 <div
     class="relative min-h-screen md:flex flex-col items-center pt-8 max-w-13 md:max-w-60 w-full border-r border-slate-200 text-sm">
     <div class="group relative">
-        <label>
-            <img src="{{ asset('image/car_image1.png') }}" id="profile_pic"
-                class='h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto object-cover' />
+        <form method="post" enctype="multipart/form-data" action="{{ route('profilePic') }}">
+            @csrf
+            <label>
+                @if (!empty(Auth::user()->image))
+                    <img src="{{ asset('uploads/profilePic/' . Auth::user()->image) }}" id="profile_pic"
+                        class='h-9 md:h-14 w-9 md:w-14 rounded-full mx-auto object-cover' />
+                @endif
 
-            <input type="file" id='image' accept='image/*' hidden
-                onchange="document.querySelector('#profile_pic').src=window.URL.createObjectURL(this.files[0])" />
+                <input type="file" name="image" id='profilePic' accept='image/*' hidden
+                    onchange="document.querySelector('#profile_pic').src=window.URL.createObjectURL(this.files[0])" />
 
-            <div
-                class='absolute hidden top-0 right-0 left-0 bottom-0 bg-black/10 rounded-full group-hover:flex items-center justify-center cursor-pointer'>
-                <i class="ri-image-edit-line text-white"></i>
-            </div>
+                <div
+                    class='absolute hidden top-0 right-0 left-0 bottom-0 bg-black/10 rounded-full group-hover:flex items-center justify-center cursor-pointer'>
+                    <i class="ri-image-edit-line text-white"></i>
+                </div>
 
-        </label>
+            </label>
 
     </div>
 
-    <button class='absolute top-0 right-0 flex p-2 gap-1 bg-indigo-500/10 text-indigo-500 cursor-pointer'>
+    <button class='absolute top-0 right-0 flex p-2 gap-1 bg-indigo-500/10 text-indigo-500 cursor-pointer'
+        id="updateProfile">
         Save <i class="ri-checkbox-circle-line"></i>
     </button>
+    </form>
 
-    <p class='mt-2 text-base max-md:hidden'>Ravi Kumar</p>
+    @if (!empty(Auth::user()->name))
+        <p class='mt-2 text-base max-md:hidden'>{{ Auth::user()->name }}</p>
+    @endif
 
     <div class='w-full'>
         <a href="{{ route('OwnerDashboard') }}"
