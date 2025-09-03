@@ -86,7 +86,7 @@ class OwnerController extends Controller
     public function ManageCars()
     {
         $id = Auth::user()->id;
-        $cars = Car::where('owner_id', $id)->orderBy('created_at', 'desc')->get();
+        $cars = Car::where('owner_id', $id)->orderBy('created_at', 'desc')->paginate(10);
         $data['cars'] = $cars;
         return view('owner.ManageCars', $data);
     }
@@ -218,7 +218,29 @@ class OwnerController extends Controller
     {
         $data['bookings'] = Booking::where('owner_id', Auth::user()->id)
         ->with(['car', 'user'])
-            ->OrderBy('created_at', 'desc')->get();
+            ->OrderBy('created_at', 'desc')->paginate(2);
         return view('owner.ManageBookings', $data);
+    }
+
+
+    public function changeBookingStatus(Request $request) {
+        $bookingId = $request->bookingId;
+
+        $booking = Booking::where('id',$bookingId)->first();
+        if($booking == null) {
+            return response()->json([
+                'status'=> false,
+                'message' => 'Booking Not Found'
+            ]);
+        }
+
+        $booking->status = $request->status;
+        $booking->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Booking Status Change Successfully'
+        ]);
+
     }
 }

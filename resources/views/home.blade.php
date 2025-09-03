@@ -1,44 +1,52 @@
 @extends('layouts.app')
 @section('content')
     <main>
-        <section class="hero bg-slate-100 w-full flex flex-col justify-center items-center min-h-screen p-7 md:p-0">
-            <div class="flex flex-col gap-4 max-w-3xl text-center">
-                <h1 class="text-5xl font-bold">Luxury cars on Rent</h1>
+        <section
+            class="hero bg-slate-100 w-full flex flex-col gap-12 justify-center md:items-center min-h-screen p-7 md:p-0">
+            <h1 class="text-5xl font-bold">Luxury cars on Rent</h1>
+            <form action="{{ route('cars') }}" method="get">
                 <div
-                    class="bg-white shadow-xl rounded-2xl p-9 flex md:gap-7 md:flex-row flex-col gap-6 md:items-center justify-center items-start my-8 text-gray-800">
+                    class="flex flex-col md:flex-row gap-9 md:items-center items-start bg-white px-12 py-6 text-slate-700 md:rounded-full rounded-xl text-center">
                     <div class="flex flex-col gap-1 items-start">
-                        <label>Location</label>
-                        <select name="" class="border border-slate-300 px-3 py-2 rounded-md focus:outline-none">
-                            <option value="">Select Location...</option>
-                            <option value="delhi-ncr">Delhi NCR</option>
-                            <option value="uttar Pradesh">Uttar Pradesh</option>
+                        <label>Pickup Location</label>
+                        <select name="location" class="focus:outline-none bg-slate-100">
+                            <option value="">Select Location</option>
+                            <option value="Uttar Pardesh">Uttar Pardesh</option>
+                            <option value="Delhi">Delhi</option>
+                            <option value="Mumbai">Mumbai</option>
+                            <option value="Bhair">Bhair</option>
+                            <option value="Haryana">Haryana</option>
+                            <option value="Kolkata">Kolkata</option>
+                            <option value="chandigarh">chandigarh</option>
+                            <option value="Bhopal">Bhopal</option>
                         </select>
 
                     </div>
 
-
                     <div class="flex flex-col gap-1 items-start">
                         <label>Pickup Date</label>
-                        <input type="date" class="border border-slate-300 px-3 py-2 rounded-md focus:outline-none">
+                        <input type="date" name="pickupDate" class="focus:outline-none">
 
                     </div>
 
                     <div class="flex flex-col gap-1 items-start">
                         <label>Return Date</label>
-                        <input type="date" class="border border-slate-300 px-3 py-2 rounded-md focus:outline-none">
+                        <input type="date" name="returnDate" class="focus:outline-none">
                     </div>
 
-
-                    <div class="md:mt-6">
+                    <div class="">
                         <button type="submit"
-                            class="bg-indigo-500 px-9 rounded text-white hover:bg-indigo-600 py-2 cursor-pointer transition-all duration-200">Search</button>
+                            class="bg-indigo-500 px-8 rounded-full text-white hover:bg-indigo-600 py-3 cursor-pointer transition-all duration-200">
+                            <i class="ri-search-line mr-2"></i>
+                            Search
+                        </button>
                     </div>
+
                 </div>
-            </div>
 
+            </form>
 
-
-            <img src="{{ asset('image/main_car.png') }}" class="md:h-85 h-35 md:mt-10" alt="">
+            <img src="{{ asset('image/main_car.png') }}" class="md:h-85 h-35 " alt="">
             </div>
         </section>
 
@@ -159,10 +167,10 @@
             <div class="grid md:grid-cols-4 grid-cols-1 gap-12 mt-18 md:px-32 px-6">
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('image/testimonial_image_1.png') }}" class="h-12 w-12 rounded-full" />
+                        <img src="{{ asset('image/testimonial-2.jpg') }}" class="h-12 w-12 rounded-full" />
                         <div class="flex flex-col items-start">
-                            <p class="text-xl">Kajal Kumari</p>
-                            <p class="text-gray-500 text-sm">New Delhi</p>
+                            <p class="text-xl">Shrikant Kanitkar</p>
+                            <p class="text-gray-500 text-sm">Delhi</p>
                         </div>
                     </div>
 
@@ -240,19 +248,17 @@
                         </svg>
                     </div>
 
-                    <p class="text-gray-500 max-w-90 mt-4 font-light">I highly recommend CarRental! Their
-                        fleet is
-                        amazing, and I always feel like I'm getting the best
-                        deal with excellent service.</p>
+                    <p class="text-gray-500 max-w-90 mt-4 font-light">I had a wonderful experience booking a car rental in
+                        Bangalore with Savaari what stood out the most was the excellent customer care team.</p>
                 </div>
 
 
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('image/testimonial_image_1.png') }}" class="h-12 w-12 rounded-full" />
+                        <img src="{{ asset('image/testimonial-3.jpg') }}" class="h-12 w-12 rounded-full" />
                         <div class="flex flex-col items-start">
-                            <p class="text-xl">Kajal Kumari</p>
-                            <p class="text-gray-500 text-sm">New Delhi</p>
+                            <p class="text-xl">Nareshkumar Choudekar</p>
+                            <p class="text-gray-500 text-sm">Delhi</p>
                         </div>
                     </div>
 
@@ -283,19 +289,17 @@
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
                     </div>
-                    <p class="text-gray-500 max-w-90 mt-4 font-light">I highly recommend CarRental! Their
-                        fleet is
-                        amazing, and I always feel like I'm getting the best
-                        deal with excellent service.</p>
+                    <p class="text-gray-500 max-w-90 mt-4 font-light">CarRental made my trip so much easier. The car was
+                        delivered right to my door, and the customer service was fantastic!</p>
                 </div>
 
 
                 <div class="bg-white p-6 rounded-xl shadow-lg hover:-translate-y-1 transition-all duration-500">
                     <div class="flex items-center gap-3">
-                        <img src="{{ asset('image/testimonial_image_1.png') }}" class="h-12 w-12 rounded-full" />
+                        <img src="{{ asset('image/testimonial-4.jpg') }}" class="h-12 w-12 rounded-full" />
                         <div class="flex flex-col items-start">
-                            <p class="text-xl">Kajal Kumari</p>
-                            <p class="text-gray-500 text-sm">New Delhi</p>
+                            <p class="text-xl">Subhasis Sen</p>
+                            <p class="text-gray-500 text-sm">Bangalore</p>
                         </div>
                     </div>
 
@@ -326,10 +330,8 @@
                                 d="M20.924 7.625a1.523 1.523 0 0 0-1.238-1.044l-5.051-.734-2.259-4.577a1.534 1.534 0 0 0-2.752 0L7.365 5.847l-5.051.734A1.535 1.535 0 0 0 1.463 9.2l3.656 3.563-.863 5.031a1.532 1.532 0 0 0 2.226 1.616L11 17.033l4.518 2.375a1.534 1.534 0 0 0 2.226-1.617l-.863-5.03L20.537 9.2a1.523 1.523 0 0 0 .387-1.575Z" />
                         </svg>
                     </div>
-                    <p class="text-gray-500 max-w-90 mt-4 font-light">I highly recommend CarRental! Their
-                        fleet is
-                        amazing, and I always feel like I'm getting the best
-                        deal with excellent service.</p>
+                    <p class="text-gray-500 max-w-90 mt-4 font-light">I've rented cars from various companies, but the
+                        experience with CarRental was exceptional.</p>
                 </div>
 
             </div>

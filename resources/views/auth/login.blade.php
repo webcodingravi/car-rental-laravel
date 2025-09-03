@@ -42,6 +42,14 @@
         </button>
 
         <button type="button" class="absolute top-4 right-4 cursor-pointer" id="close-btn">X</button>
+
+        <div class="field w-full text-end">
+            <a href="{{ route('forgotPassword') }}" id="forgotPassword">Forgot password?</a>
+        </div>
+
+
     </form>
+
+
 
 </div>

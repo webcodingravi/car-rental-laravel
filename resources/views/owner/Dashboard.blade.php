@@ -66,7 +66,9 @@
                             </div>
                             <div>
                                 <p>{{ $booking->brand }} {{ $booking->model }}</p>
-                                <p class='text-sm text-gray-500'>{{ $booking->pickupDate }} To {{ $booking->returnDate }}
+                                <p class='text-sm text-gray-500'>
+                                    {{ \Carbon\Carbon::parse($booking->pickupDate)->format('d M, Y') }} To
+                                    {{ \Carbon\Carbon::parse($booking->returnDate)->format('d M, Y') }}
                                 </p>
                             </div>
                         </div>

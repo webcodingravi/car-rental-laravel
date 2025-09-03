@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Car Rental</title>
-    <link rel="icon" href="{{ asset('image/favicon.svg') }}">
+    <link rel="icon" href="{{ asset('image/logo/logo.png') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="{{ asset('css/common.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -15,6 +16,7 @@
 </head>
 
 <body>
+
     @include('layouts.header', ['userLogin', 'listCars'])
 
 
@@ -23,12 +25,25 @@
 
     {{-- login/sign model --}}
 
-    @include('login', ['user-form'])
+    @include('auth.login', ['user-form'])
+
+
+    <!-- Forgot Password Modal -->
+    @include('auth.forgotPassword')
+
+    {{-- error message --}}
+    @include('alertMessage.alertMessage')
 
     {{-- Footer --}}
     @include('layouts.footer')
 
     <script src="{{ asset('js/common.js') }}"></script>
+    <script>
+        setTimeout(() => {
+            $("#box").fadeOut('slow')
+        }, 3000);
+    </script>
+
     <script>
         $(document).ready(function() {
             // open login model
@@ -41,8 +56,6 @@
             })
 
 
-
-
             let state = 'login';
             const formTitle = document.getElementById('form-title');
             const nameField = document.getElementById('name-field');
@@ -50,8 +63,15 @@
             const toggleText = document.getElementById('toggle-text');
             const toggleLink = document.getElementById('toggle-link');
             const submitButton = document.getElementById('submit-button');
+            const forgotLink = document.getElementById('forgotPassword');
+            const closeLogin = document.getElementById('close-btn');
+            const loginModal = document.getElementById('login-model');
+            const forgotModal = document.getElementById('forgot-modal');
+            const closeForgot = document.getElementById('close-forgot');
+
 
             toggleLink.addEventListener('click', () => {
+
                 state = (state === 'login') ? 'register' : 'login';
                 formTitle.textContent = (state === 'login') ? 'Login' : 'Sign Up';
                 nameField.style.display = (state === 'register') ? 'block' : 'none';
@@ -61,7 +81,34 @@
                     'Already have account?' :
                     'Create an account?';
                 toggleLink.textContent = 'click here';
+
+                // Forgot password link typically only applies to login
+                forgotLink.style.display = state === 'login' ? 'block' : 'none';
             });
+
+
+            forgotLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                loginModal.classList.add('hidden');
+                forgotModal.classList.remove('hidden');
+            });
+
+            closeForgot.addEventListener('click', () => {
+                forgotModal.classList.add('hidden');
+                loginModal.classList.remove('hidden');
+            });
+
+            closeLogin.addEventListener('click', () => loginModal.classList.add('hidden'));
+
+            window.addEventListener('click', (e) => {
+                if (e.target === forgotModal) {
+                    forgotModal.classList.add('hidden');
+                    loginModal.classList.remove('hidden');
+                }
+            });
+
+
+
 
 
             // register User

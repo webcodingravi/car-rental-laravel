@@ -9,107 +9,77 @@
                 </p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 border border-slate-200 rounded-lg mt-8 first:mt-12">
-                <div class="md:col-span-1">
-                    <div class="rounded-md overflow-hidden mb-3">
-                        <img src="{{ asset('image/car_image1.png') }}" class="w-full h-auto aspect-video object-cover">
-                    </div>
-                    <p class="text-gray-500">Jeep Wrangler</p>
-                    <p>2023 • SUV • Delhi</p>
+            @if ($myBookings->isNotEmpty())
+                @foreach ($myBookings as $index => $booking)
+                    <div
+                        class="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 border border-slate-200 rounded-lg mt-8 first:mt-12">
+                        <div class="md:col-span-1">
+                            <div class="rounded-md overflow-hidden mb-3">
+                                <img src="{{ asset('image/car_image1.png') }}"
+                                    class="w-full h-auto aspect-video object-cover">
+                            </div>
+                            <p class="text-gray-500">{{ $booking->brand }} {{ $booking->model }}</p>
+                            <p>{{ $booking->car->year }} • {{ $booking->car->category }} • {{ $booking->car->location }}</p>
 
-                </div>
-
-
-                {{-- booking info --}}
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-2">
-                        <p class="bg-slate-100 py-1.5 px-3 rounded">Booking #1</p>
-                        <p class="px-3 py-1 text-xs bg-green-400/45 text-green-600 rounded-full">Confirmed</p>
-                    </div>
-
-                    <div class="flex items-start gap-2 mt-3">
-                        <i class="ri-calendar-line text-xl text-blue-500"></i>
-                        <div>
-                            <p class="text-gray-500">Rental Period</p>
-                            <p>2025-08-28 To 2025-08-30</p>
                         </div>
-                    </div>
 
-                    <div class="flex items-start gap-3 mt-3">
-                        <i class="ri-map-pin-line text-xl text-blue-500"></i>
-                        <div>
-                            <p class="text-gray-500">Pick-up Location</p>
-                            <p>Delhi</p>
+
+                        {{-- booking info --}}
+
+                        <div class="md:col-span-2">
+                            <div class="flex items-center gap-2">
+                                <p class="bg-slate-100 py-1.5 px-3 rounded">Booking #{{ $index + 1 }}</p>
+                                @if ($booking->status == 'confirmed')
+                                    <p class="px-3 py-1 text-xs bg-green-400/45 text-green-600 rounded-full">
+                                        {{ $booking->status }}</p>
+                                @elseif ($booking->status == 'pending')
+                                    <p class="px-3 py-1 text-xs bg-slate-200 text-rose-600 rounded-full">
+                                        {{ $booking->status }}</p>
+                                @else
+                                    <p class="px-3 py-1 text-xs bg-rose-200 text-rose-600 rounded-full">
+                                        {{ $booking->status }}</p>
+                                @endif
+
+                            </div>
+
+                            <div class="flex items-start gap-2 mt-3">
+                                <i class="ri-calendar-line text-xl text-blue-500"></i>
+                                <div>
+                                    <p class="text-gray-500">Rental Period</p>
+                                    <p>{{ \Carbon\Carbon::parse($booking->pickupDate)->format('d M, Y') }} To
+                                        {{ \Carbon\Carbon::parse($booking->returnDate)->format('d M, Y') }}</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start gap-3 mt-3">
+                                <i class="ri-map-pin-line text-xl text-blue-500"></i>
+                                <div>
+                                    <p class="text-gray-500">Pick-up Location</p>
+                                    <p>{{ $booking->car->location }}</p>
+                                </div>
+                            </div>
+
                         </div>
-                    </div>
-
-                </div>
 
 
-                {{-- price --}}
-                <div class="flex flex-col justify-between gap-6 md:col-span-1">
-                    <div class="text-sm text-gray-500 text-right">
-                        <p>Total Price</p>
-                        <h1 class="text-2xl font-semibold text-indigo-500">$160</h1>
-                        <p>Booked on 2025-08-27</p>
-                    </div>
-                </div>
-
-
-
-
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 p-6 border border-slate-200 rounded-lg mt-8 first:mt-12">
-                <div class="md:col-span-1">
-                    <div class="rounded-md overflow-hidden mb-3">
-                        <img src="{{ asset('image/car_image1.png') }}" class="w-full h-auto aspect-video object-cover">
-                    </div>
-                    <p class="text-gray-500">Jeep Wrangler</p>
-                    <p>2023 • SUV • Delhi</p>
-
-                </div>
-
-
-                {{-- booking info --}}
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-2">
-                        <p class="bg-slate-100 py-1.5 px-3 rounded">Booking #1</p>
-                        <p class="px-3 py-1 text-xs bg-green-400/45 text-green-600 rounded-full">Confirmed</p>
-                    </div>
-
-                    <div class="flex items-start gap-2 mt-3">
-                        <i class="ri-calendar-line text-xl text-blue-500"></i>
-                        <div>
-                            <p class="text-gray-500">Rental Period</p>
-                            <p>2025-08-28 To 2025-08-30</p>
+                        {{-- price --}}
+                        <div class="flex flex-col justify-between gap-6 md:col-span-1">
+                            <div class="text-sm text-gray-500 text-right">
+                                <p>Total Price</p>
+                                <h1 class="text-2xl font-semibold text-indigo-500">${{ $booking->price }}</h1>
+                                <p>Booked on {{ \Carbon\Carbon::parse($booking->created_at)->format('d M, Y h:i:A') }}
+                                </p>
+                            </div>
                         </div>
+
+
+
+
                     </div>
-
-                    <div class="flex items-start gap-3 mt-3">
-                        <i class="ri-map-pin-line text-xl text-blue-500"></i>
-                        <div>
-                            <p class="text-gray-500">Pick-up Location</p>
-                            <p>Delhi</p>
-                        </div>
-                    </div>
-
-                </div>
+                @endforeach
+            @endif
 
 
-                {{-- price --}}
-                <div class="flex flex-col justify-between gap-6 md:col-span-1">
-                    <div class="text-sm text-gray-500 text-right">
-                        <p>Total Price</p>
-                        <h1 class="text-2xl font-semibold text-indigo-500">$160</h1>
-                        <p>Booked on 2025-08-27</p>
-                    </div>
-                </div>
-
-
-
-
-            </div>
 
         </div>
     </main>

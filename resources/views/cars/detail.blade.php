@@ -9,7 +9,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 mb-50">
                 {{-- left side --}}
                 <div class="md:col-span-2">
-                    <img src="{{ asset('image/car_image1.png') }}" alt=""
+                    <img src="{{ asset('uploads/cars/' . $carDetail->image) }}" alt="car"
                         class="w-full h-auto object-cover rounded-xl mb-6 shadow-md md:max-h-120">
 
                     <div>

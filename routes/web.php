@@ -6,11 +6,18 @@ use App\Http\Controllers\owner\ManageBookingController;
 use App\Http\Controllers\owner\OwnerController;
 use Illuminate\Support\Facades\Route;
 
+
+
+
 Route::get('/', [FrontController::class, 'home'])->name('home');
 
-
 Route::get('/cars', [FrontController::class, 'cars'])->name('cars');
-Route::get('/cars-detail/{slug}', [FrontController::class, 'CarDetail'])->name('CarDetail');
+
+
+// search filter car
+Route::get('/car/search', [FrontController::class, 'search_car'])->name('search_car');
+
+Route::get('/car/{slug}', [FrontController::class, 'CarDetail'])->name('CarDetail');
 
 Route::get('/my-bookings', [FrontController::class, 'MyBookings'])->name('MyBookings');
 Route::post('/bookings', [FrontController::class, 'createBooking'])->name('createBooking');
@@ -20,8 +27,18 @@ Route::post('/register', [AuthController::class, 'registerUser'])->name('registe
 Route::post('/login', [AuthController::class, 'loginUser'])->name('loginUser');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
+// forgot Password
+Route::post('/forgot-password', [AuthController::class, 'forgotPassword'])->name('forgotPassword');
+
+// reset Password
+Route::get('/reset/{token}', [AuthController::class, 'resetPassword']);
+Route::post('/reset/{token}', [AuthController::class, 'processResetPassword'])->name('resetPassword');
+
+
 // list cars permession
 Route::get('/list-cars', [AuthController::class, 'listCars'])->name('listCars');
+
+
 
 
 // owner dashboard
@@ -37,5 +54,6 @@ Route::group(['middleware' => 'owner'], function () {
         Route::get('/manage-bookings', [OwnerController::class, 'ManageBookings'])->name('OwnerManageBookings');
         Route::post('/profile-pic', [OwnerController::class, 'profilePic'])->name('profilePic');
         Route::post('/toggleCarAvailability', [OwnerController::class, 'toggleCarAvailability'])->name('toggleCarAvailability');
+        Route::post('/change-booking-status', [OwnerController::class, 'changeBookingStatus'])->name('changeBookingStatus');
     });
 });

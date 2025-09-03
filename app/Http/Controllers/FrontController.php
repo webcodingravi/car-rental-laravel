@@ -18,12 +18,38 @@ class FrontController extends Controller
     return view('home',$data);
    }
 
-   public function cars() {
-     $data['cars'] = Car::latest()
-    ->where('isAvailable',1)
-    ->paginate(10);
-    return view('cars.car-list',$data);
+   public function about() {
+    return view('about');
    }
+
+//    search location, pickupDate, returnDate
+
+
+   public function cars(Request $request) {
+     $cars = Car::query();
+
+
+    if(!empty($request->location)) {
+        $cars = $cars->where('location','like','%'.$request->location.'%');
+    }
+
+  $cars = $cars->where('isAvailable',1);
+    $cars = $cars->orderBy('cars.id','desc')->paginate(10);
+    $data['cars'] = $cars;
+    return view('cars.car',$data);
+   }
+
+//    search live
+public function search_car(Request $request) {
+    if($request->ajax()) {
+       $query = $request->get('query');
+       $cars = Car::where('brand','like','%'.$query.'%')
+       ->orWhere('model','like','%'.$query.'%')
+       ->orWhere('location','like','%'.$query.'%')->get();
+       return view('cars.list',compact('cars'))->render();
+
+    }
+}
 
     public function CarDetail(string $slug) {
      $carDetail = Car::where('slug',$slug)->first();
@@ -35,7 +61,11 @@ class FrontController extends Controller
    }
 
    public function MyBookings() {
-    return view('MyBookings');
+    $id = Auth::user()->id;
+    $data['myBookings'] = Booking::where('user_id',$id)
+    ->with('car')
+    ->orderBy('created_at','desc')->get();
+    return view('MyBookings',$data);
    }
 
 
@@ -43,6 +73,8 @@ class FrontController extends Controller
 
  public function createBooking(Request $request)
     {
+
+        if(Auth::check()) {
         $user = Auth::user()->id;
         $carId = $request->car_id;
         $pickupDate = Carbon::parse($request->pickupDate);
@@ -65,7 +97,7 @@ class FrontController extends Controller
 
         // 2. Fetch car and calculate price
         $car = Car::findOrFail($carId);
-        $noOfDays = $pickupDate->diffInDays($returnDate) + 1;
+        $noOfDays = $pickupDate->diffInDays($returnDate);
         $price = $car->pricePerDay * $noOfDays;
 
         // 3. Create booking
@@ -81,5 +113,23 @@ class FrontController extends Controller
             'status' => true,
             'message' => 'Booking Created'
         ]);
-    }
+
+
+        }else{
+             return response()->json([
+            'status' => false,
+            'message' => 'Please Login!'
+        ]);
+
+        }
+}
+
+
+
+
+
+
+
+
+
 }

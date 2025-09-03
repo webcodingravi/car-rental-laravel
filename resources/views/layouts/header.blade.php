@@ -1,11 +1,19 @@
   <nav
       class="flex items-center justify-between md:px-32 px-6 border-b border-slate-200 py-4 {{ Request::segment(1) == '' ? 'bg-slate-100' : 'bg-white' }} transition-all duration-500 sticky top-0 left-0 z-[999] text-gray-600">
-      <img src={{ asset('image/logo/logo.svg') }} class=" cursor-pointer" alt="Logo">
+      <a href="{{ route('home') }}">
+          <img src={{ asset('image/logo/logo.png') }}
+              class=" cursor-pointer w-25 animate__animated animate__pulse animate__infinite animate__slow"
+              alt="Logo">
+      </a>
       {{-- dasktop menu --}}
       <div class="space-x-8 md:block hidden">
           <a href="{{ route('home') }}" class="hover:text-indigo-500">Home</a>
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
-          <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
+          @if (Auth::check())
+              <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
+          @endif
+
+
           @if (Auth::check() && Auth::user()->role == 'owner')
               <a href="{{ route('OwnerDashboard') }}"
                   class="hover:text-indigo-500 cursor-pointer focus:outline-none">Dashboard</button>

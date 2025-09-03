@@ -25,7 +25,7 @@
                         @foreach ($cars as $car)
                             <tr class="border-t border-slate-200">
                                 <td class="p-3 flex items-center gap-3">
-                                    <img src="{{ asset('image/car_image1.png') }}"
+                                    <img src="{{ asset('uploads/cars/' . $car->image) }}"
                                         class="h-12 w-12 aspect-squre rounded-md object-cover" />
                                     <div class="max-md:hidden">
                                         <p class="font-medium">{{ $car->brand }} {{ $car->model }}</p>
@@ -70,9 +70,11 @@
 
                 </tbody>
             </table>
+            <div class="p-4">
+                {{ $cars->links() }}
+            </div>
 
         </div>
-
 
     </div>
 @endsection
