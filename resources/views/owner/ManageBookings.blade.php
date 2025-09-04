@@ -29,7 +29,7 @@
                         @foreach ($bookings as $booking)
                             <tr class="border-t border-slate-200 text-gray-500">
                                 <td class='p-3 flex items-center gap-3'>
-                                    <img src="{{ asset('image/car_image1.png') }}"
+                                    <img src="{{ asset('uploads/cars/' . $booking->car->image) }}"
                                         class='h-12 w-12 aspect-square rounded-md object-cover' />
                                     <p class='font-medium max-md:hidden'>{{ $booking->car->brand }}
                                         {{ $booking->car->model }}</p>
@@ -53,8 +53,9 @@
                                 </td>
 
                                 <td class='p-3 max-md:hidden'>
-                                    ${{ $booking->price }}
+                                    ₹{{ number_format($booking->price) }}
                                 </td>
+
 
                                 <td class='p-3 max-md:hidden'>
                                     <span class='bg-gray-100 px-3 py-1 rounded-full text-xs'>offline</span>

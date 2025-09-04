@@ -3,7 +3,7 @@
     {{-- alert message --}}
     @include('alertMessage.alertMessage')
 
-    <div class="px-4 pt-10 md:px-10 flex-1">
+    <div class="px-4 py-10 md:px-10 flex-1">
         <h1 class='font-medium text-3xl'>Add New Car</h1>
         <p class='text-sm md:text-base text-gray-500/90 mt-2 max-w-156'>Fill in details to list a new car for booking,
             including pricing, availability, and car specifications.</p>
@@ -24,6 +24,9 @@
                 </label>
                 <p class="text-sm text-gray-500">Upload a picture of your car</p>
             </div>
+            @error('image')
+                <p class="text-pink-500">{{ $message }}</p>
+            @enderror
 
             {{-- {/* car brand & model */} --}}
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -60,8 +63,9 @@
                     @enderror
                 </div>
 
+
                 <div class="flex flex-col w-full">
-                    <label>Daily Price ($)</label>
+                    <label>Daily Price (₹)</label>
                     <input type="number" value="{{ old('pricePerDay') }}" name="pricePerDay" placeholder="100"
                         class="px-3 py-2 mt-1 border border-slate-200 rounded-md outline-none" />
                     @error('pricePerDay')
@@ -148,6 +152,37 @@
             </div>
 
             {{-- {/* Car Description */} --}}
+            <div class="flex flex-col w-full gap-2">
+                <label>Features</label>
+                <div class="flex gap-2">
+                    <input type="checkbox" value="GPS" name="features[]" />
+                    <span>GPS</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="360 Camera" name="features[]" />
+                    <span>360 Camera</span>
+                </div>
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Rear View" name="features[]" />
+                    <span>Rear View</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Bluetooth" name="features[]" />
+                    <span>Bluetooth</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Heated Seats" name="features[]" />
+                    <span>Heated Seats</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Mirror" name="features[]" />
+                    <span>Mirror</span>
+                </div>
+            </div>
 
             <div class="flex flex-col w-full">
                 <label>Description</label>

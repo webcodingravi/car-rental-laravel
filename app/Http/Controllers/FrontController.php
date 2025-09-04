@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 class FrontController extends Controller
 {
    public function home() {
+    $data['meta_title'] = 'Home';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
     $data['featuresCars'] = Car::latest()
     ->where('isAvailable',1)
     ->limit(6)
@@ -18,17 +21,39 @@ class FrontController extends Controller
     return view('home',$data);
    }
 
-   public function about() {
-    return view('about');
+   // pages
+  public function AboutUs() {
+    $data['meta_title'] = 'About Us';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+    return view('about',$data);
    }
+
+    public function TermsOfService() {
+    $data['meta_title'] = 'Terms of Service';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+    return view('terms-service',$data);
+   }
+
+
+ public function PrivacyPolicy() {
+    $data['meta_title'] = 'Privacy & Policy';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+    return view('privacy-policy',$data);
+   }
+
 
 //    search location, pickupDate, returnDate
 
 
    public function cars(Request $request) {
+     $data['meta_title'] = 'All Cars';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+
      $cars = Car::query();
-
-
     if(!empty($request->location)) {
         $cars = $cars->where('location','like','%'.$request->location.'%');
     }
@@ -51,8 +76,12 @@ public function search_car(Request $request) {
     }
 }
 
-    public function CarDetail(string $slug) {
-     $carDetail = Car::where('slug',$slug)->first();
+    public function CarDetail(string $id) {
+    $data['meta_title'] = 'Car Detail';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+
+     $carDetail = Car::where('uuid',$id)->first();
      if($carDetail == null) {
        return redirect()->route('home');
      }
@@ -61,6 +90,9 @@ public function search_car(Request $request) {
    }
 
    public function MyBookings() {
+     $data['meta_title'] = 'My Bookings';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
     $id = Auth::user()->id;
     $data['myBookings'] = Booking::where('user_id',$id)
     ->with('car')
@@ -123,6 +155,7 @@ public function search_car(Request $request) {
 
         }
 }
+
 
 
 

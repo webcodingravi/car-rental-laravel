@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 03, 2025 at 06:19 PM
+-- Generation Time: Sep 04, 2025 at 01:22 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -40,18 +40,6 @@ CREATE TABLE `bookings` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `bookings`
---
-
-INSERT INTO `bookings` (`id`, `price`, `pickupDate`, `returnDate`, `owner_id`, `user_id`, `car_id`, `status`, `created_at`, `updated_at`) VALUES
-(13, '160', '2025-09-02', '2025-09-02', 1, 1, 2, 'cancelled', '2025-08-31 15:28:07', '2025-09-03 05:45:05'),
-(14, '160', '2025-09-03', '2025-09-03', 1, 1, 2, 'cancelled', '2025-09-03 02:25:27', '2025-09-03 05:45:02'),
-(15, '320', '2025-09-11', '2025-09-12', 1, 1, 2, 'cancelled', '2025-09-03 05:32:15', '2025-09-03 05:44:59'),
-(16, '160', '2025-09-14', '2025-09-15', 1, 1, 2, 'cancelled', '2025-09-03 05:40:06', '2025-09-03 05:44:56'),
-(17, '0', '2025-09-17', '2025-09-17', 1, 1, 2, 'cancelled', '2025-09-03 05:40:44', '2025-09-03 05:44:53'),
-(18, '0', '2025-09-09', '2025-09-09', 1, 1, 2, 'pending', '2025-09-03 06:08:28', '2025-09-03 06:08:28');
-
 -- --------------------------------------------------------
 
 --
@@ -84,6 +72,7 @@ CREATE TABLE `cache_locks` (
 
 CREATE TABLE `cars` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `uuid` char(36) NOT NULL,
   `brand` varchar(255) NOT NULL,
   `slug` varchar(255) NOT NULL,
   `model` varchar(255) NOT NULL,
@@ -94,6 +83,7 @@ CREATE TABLE `cars` (
   `transmission` varchar(255) NOT NULL,
   `pricePerDay` varchar(255) NOT NULL,
   `location` varchar(255) NOT NULL,
+  `features` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin NOT NULL CHECK (json_valid(`features`)),
   `isAvailable` int(11) NOT NULL DEFAULT 1,
   `description` text DEFAULT NULL,
   `image` varchar(255) DEFAULT NULL,
@@ -106,10 +96,11 @@ CREATE TABLE `cars` (
 -- Dumping data for table `cars`
 --
 
-INSERT INTO `cars` (`id`, `brand`, `slug`, `model`, `year`, `category`, `seating_capacity`, `fuel_type`, `transmission`, `pricePerDay`, `location`, `isAvailable`, `description`, `image`, `owner_id`, `created_at`, `updated_at`) VALUES
-(2, 'BMW', 'bmw', 'X5', 2025, 'SUV', '2', 'Hybrid', 'Automatic', '160', 'Delhi', 1, 'fsfsgs', '1756673541.png', 1, '2025-08-31 15:22:21', '2025-08-31 15:22:21'),
-(3, 'Toyata', 'toyata', 'Corolla', 2021, 'SUV', '3', 'Diesel', 'Menual', '3000', 'Delhi', 1, 'The Toyota Corolla is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.', '1756902579.png', 1, '2025-09-03 06:59:39', '2025-09-03 06:59:39'),
-(4, 'Ford', 'ford', 'Neo 6', 2022, 'SUV', '4', 'Diesel', 'Semi-automatic', '2500', 'Delhi', 1, 'This is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.', '1756902758.png', 1, '2025-09-03 07:02:38', '2025-09-03 07:02:38');
+INSERT INTO `cars` (`id`, `uuid`, `brand`, `slug`, `model`, `year`, `category`, `seating_capacity`, `fuel_type`, `transmission`, `pricePerDay`, `location`, `features`, `isAvailable`, `description`, `image`, `owner_id`, `created_at`, `updated_at`) VALUES
+(8, '8a572894-40fe-4fbd-a4ae-1f764bfd42f0', 'BMW', 'bmw', 'X5', 2021, 'SUV', '4', 'Hybrid', 'Semi-automatic', '2000', 'Delhi', '[\"GPS\",\"360 Camera\",\"Rear View\",\"Bluetooth\",\"Heated Seats\",\"Mirror\"]', 1, 'The BMW X5 is a mid-size luxury SUV produced by BMW. The X5 made its debut in 1999 as the first SUV ever produced by BMW.', '1756981963.png', 1, '2025-09-04 05:02:43', '2025-09-04 05:27:16'),
+(9, '356c6e7b-48ef-463d-94d4-32a63cdc5f53', 'Toyota', 'toyota', 'Corolla', 2021, 'Sedan', '4', 'Diesel', 'Menual', '2500', 'Delhi', '[\"GPS\",\"360 Camera\",\"Rear View\",\"Bluetooth\",\"Heated Seats\",\"Mirror\"]', 1, 'The Toyota Corolla is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.', '1756984513.png', 1, '2025-09-04 05:45:13', '2025-09-04 05:45:13'),
+(10, '59922764-2980-4008-a12f-e296f565b2eb', 'Jeep', 'jeep', 'Wrangler', 2023, 'SUV', '4', 'Hybrid', 'Automatic', '2700', 'Delhi', '[\"GPS\",\"360 Camera\",\"Rear View\",\"Bluetooth\",\"Heated Seats\",\"Mirror\"]', 1, 'The Jeep Wrangler is a mid-size luxury SUV produced by Jeep. The Wrangler made its debut in 2003 as the first SUV ever produced by Jeep.', '1756984626.png', 1, '2025-09-04 05:47:06', '2025-09-04 05:47:06'),
+(11, 'b65fe0d7-1a64-4cd8-b652-d80216c9d459', 'Ford', 'ford', 'Neo 6', 2022, 'Sedan', '4', 'Diesel', 'Semi-automatic', '4000', 'Delhi', '[\"GPS\",\"360 Camera\",\"Rear View\",\"Bluetooth\",\"Heated Seats\",\"Mirror\"]', 1, 'This is a mid-size luxury sedan produced by Toyota. The Corolla made its debut in 2008 as the first sedan ever produced by Toyota.', '1756984797.png', 1, '2025-09-04 05:49:57', '2025-09-04 05:49:57');
 
 -- --------------------------------------------------------
 
@@ -187,7 +178,7 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (6, '2025_08_31_172632_update_users_table', 3),
 (7, '2025_08_31_172845_update_cars_table', 4),
 (8, '2025_08_31_182406_update_users_table', 5),
-(9, '2025_08_31_182618_update_cars_table', 6);
+(11, '2025_08_31_182618_update_cars_table', 6);
 
 -- --------------------------------------------------------
 
@@ -339,7 +330,7 @@ ALTER TABLE `bookings`
 -- AUTO_INCREMENT for table `cars`
 --
 ALTER TABLE `cars`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -357,7 +348,7 @@ ALTER TABLE `jobs`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `users`

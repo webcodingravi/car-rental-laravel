@@ -11,13 +11,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [FrontController::class, 'home'])->name('home');
 
-Route::get('/cars', [FrontController::class, 'cars'])->name('cars');
 
+Route::get('/cars', [FrontController::class, 'cars'])->name('cars');
 
 // search filter car
 Route::get('/car/search', [FrontController::class, 'search_car'])->name('search_car');
 
-Route::get('/car/{slug}', [FrontController::class, 'CarDetail'])->name('CarDetail');
+Route::get('/car/{id}', [FrontController::class, 'CarDetail'])->name('CarDetail');
 
 Route::get('/my-bookings', [FrontController::class, 'MyBookings'])->name('MyBookings');
 Route::post('/bookings', [FrontController::class, 'createBooking'])->name('createBooking');
@@ -37,6 +37,14 @@ Route::post('/reset/{token}', [AuthController::class, 'processResetPassword'])->
 
 // list cars permession
 Route::get('/list-cars', [AuthController::class, 'listCars'])->name('listCars');
+
+
+// pages
+Route::get('/about-us', [FrontController::class, 'AboutUs'])->name('AboutUs');
+
+Route::get('/terms-of-service', [FrontController::class, 'TermsOfService'])->name('TermsOfService');
+
+Route::get('/privacy-policy', [FrontController::class, 'PrivacyPolicy'])->name('PrivacyPolicy');
 
 
 

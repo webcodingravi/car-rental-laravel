@@ -66,7 +66,7 @@
                 </div>
 
                 <div class="flex flex-col w-full">
-                    <label>Daily Price ($)</label>
+                    <label>Daily Price (₹)</label>
                     <input type="number" value="{{ old('pricePerDay', $car->pricePerDay) }}" name="pricePerDay"
                         placeholder="100" class="px-3 py-2 mt-1 border border-slate-200 rounded-md outline-none" />
                     @error('pricePerDay')
@@ -154,6 +154,48 @@
                 @error('location')
                     <p class="text-pink-500">{{ $message }}</p>
                 @enderror
+            </div>
+
+            {{-- {/* Car Description */} --}}
+            <div class="flex flex-col w-full gap-2">
+                @php
+                    $features = json_decode($car->features, true);
+                @endphp
+                <label>Features</label>
+                <div class="flex gap-2">
+                    <input type="checkbox" value="GPS" {{ in_array('GPS', $features) ? 'checked' : '' }}
+                        name="features[]" />
+                    <span>GPS</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="360 Camera" {{ in_array('360 Camera', $features) ? 'checked' : '' }}
+                        name="features[]" />
+                    <span>360 Camera</span>
+                </div>
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Rear View" {{ $features[2] == 'Rear View' ? 'checked' : '' }}
+                        name="features[]" />
+                    <span>Rear View</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Bluetooth" {{ in_array('Bluetooth', $features) ? 'checked' : '' }}
+                        name="features[]" />
+                    <span>Bluetooth</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Heated Seats"
+                        {{ in_array('Heated Seats', $features) ? 'checked' : '' }} name="features[]" />
+                    <span>Heated Seats</span>
+                </div>
+
+                <div class="flex gap-2">
+                    <input type="checkbox" value="Mirror" {{ in_array('Mirror', $features) ? 'checked' : '' }}
+                        name="features[]" />
+                    <span>Mirror</span>
+                </div>
             </div>
 
             {{-- {/* Car Description */} --}}

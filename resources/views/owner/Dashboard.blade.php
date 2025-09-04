@@ -74,7 +74,7 @@
                         </div>
 
                         <div class='flex items-center gap-2 font-medium'>
-                            <p class='text-sm text-gray-500'>${{ $booking->price }}</p>
+                            <p class='text-sm text-gray-500'>₹{{ number_format($booking->price) }}</p>
                             <p class='px-3 py-0.5 border border-slate-200 rounded-full text-sm'>{{ $booking->status }}</p>
                         </div>
                     </div>
@@ -86,7 +86,7 @@
             <div class='p-4 md:p-6 mb-6 border border-slate-200 rounded-md w-full md:max-w-xs'>
                 <h1 class='text-lg font-medium'>Monthly Revenue</h1>
                 <p class='text-gray-500'>Revenue for current month</p>
-                <p class='text-3xl mt-6 font-semibold text-indigo-500'>${{ $monthlyRevenuebookings }}</p>
+                <p class='text-3xl mt-6 font-semibold text-indigo-500'>₹{{ number_format($monthlyRevenuebookings) }}</p>
             </div>
         </div>
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\owner;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\Car;
+use App\Models\FeaturesCar;
 use App\Models\User;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
@@ -15,6 +16,10 @@ class OwnerController extends Controller
 {
     public function Dashboard()
     {
+    $data['header_title'] = 'Dashboard';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+
         $id = Auth::user()->id;
         $role = Auth::user()->role;
         if ($role != 'owner') {
@@ -38,7 +43,10 @@ class OwnerController extends Controller
 
     public function AddCar()
     {
-        return view('owner.AddCar');
+    $data['header_title'] = 'Add Car';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+    return view('owner.AddCar',$data);
     }
 
     public function AddCarProcess(Request $request)
@@ -53,10 +61,12 @@ class OwnerController extends Controller
             'transmission' => 'required',
             'pricePerDay' => 'required',
             'location' => 'required',
+            'image' => 'required'
 
 
         ]);
 
+        if(!empty($request->file('image'))) {
         $image = $request->file('image');
         $ext = $image->getClientOriginalExtension();
         $ImageName = time() . '.' . $ext;
@@ -67,6 +77,7 @@ class OwnerController extends Controller
         $addCar->image = $ImageName;
         $addCar->brand = trim($request->brand);
         $addCar->slug = Str::slug($request->brand);
+        $addCar->uuid = Str::uuid();
         $addCar->model = trim($request->model);
         $addCar->year = trim($request->year);
         $addCar->category = trim($request->category);
@@ -75,16 +86,22 @@ class OwnerController extends Controller
         $addCar->transmission = trim($request->transmission);
         $addCar->pricePerDay = trim($request->pricePerDay);
         $addCar->location = trim($request->location);
+        $addCar->features = json_encode($request->features);
         $addCar->description = trim($request->description);
         $addCar->owner_id = !empty(Auth::user()->id);
         $addCar->save();
 
+
         return redirect()->back()->with('success', 'Add Car Successfully');
+        }
     }
 
 
     public function ManageCars()
     {
+         $data['header_title'] = 'Manage Cars';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
         $id = Auth::user()->id;
         $cars = Car::where('owner_id', $id)->orderBy('created_at', 'desc')->paginate(10);
         $data['cars'] = $cars;
@@ -94,8 +111,12 @@ class OwnerController extends Controller
 
     public function EditCar(string $id)
     {
-        $data['car'] = Car::findOrFail($id);
-        return view('owner.EditCar', $data);
+     $data['header_title'] = 'Edit Car';
+    $data['meta_description'] = '';
+    $data['meta_keywords'] = '';
+    $data['car'] = Car::findOrFail($id);
+
+    return view('owner.EditCar', $data);
     }
 
     public function UpdateCar(Request $request, string $id)
@@ -124,6 +145,7 @@ class OwnerController extends Controller
         $updateCar->transmission = trim($request->transmission);
         $updateCar->pricePerDay = trim($request->pricePerDay);
         $updateCar->location = trim($request->location);
+        $updateCar->features = json_encode($request->features);
         $updateCar->description = trim($request->description);
         $updateCar->owner_id = !empty(Auth::user()->id);
         $updateCar->save();
@@ -216,9 +238,12 @@ class OwnerController extends Controller
     // ManageBookings
     public function ManageBookings()
     {
-        $data['bookings'] = Booking::where('owner_id', Auth::user()->id)
+          $data['header_title'] = 'Manage Bookings';
+          $data['meta_description'] = '';
+          $data['meta_keywords'] = '';
+          $data['bookings'] = Booking::where('owner_id', Auth::user()->id)
         ->with(['car', 'user'])
-            ->OrderBy('created_at', 'desc')->paginate(2);
+            ->OrderBy('created_at', 'desc')->paginate(10);
         return view('owner.ManageBookings', $data);
     }
 

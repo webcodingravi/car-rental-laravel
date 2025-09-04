@@ -8,6 +8,7 @@
       {{-- dasktop menu --}}
       <div class="space-x-8 md:block hidden">
           <a href="{{ route('home') }}" class="hover:text-indigo-500">Home</a>
+          <a href="{{ route('AboutUs') }}" class="hover:text-indigo-500">About Us</a>
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
           @if (Auth::check())
               <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
@@ -51,9 +52,21 @@
           id="mobile-menu">
 
           <a href="{{ route('home') }}" class="hover:text-indigo-500">Home</a>
+          <a href="{{ route('AboutUs') }}" class="hover:text-indigo-500">About Us</a>
           <a href="{{ route('cars') }}" class="hover:text-indigo-500">Cars</a>
-          <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
-          <a href="{{ route('OwnerDashboard') }}" class="hover:text-indigo-500">Dashboard</a>
+          @if (Auth::check())
+              <a href="{{ route('MyBookings') }}" class="hover:text-indigo-500">MyBookings</a>
+          @endif
+
+          @if (Auth::check() && Auth::user()->role == 'owner')
+              <a href="{{ route('OwnerDashboard') }}"
+                  class="hover:text-indigo-500 cursor-pointer focus:outline-none">Dashboard</button>
+              @else
+                  <button class="hover:text-indigo-500 cursor-pointer focus:outline-none" id="listCars">List
+                      cars</button>
+          @endif
+
+
           @if (!empty(Auth::check()))
               <a href="{{ route('logout') }}"
                   class="bg-indigo-500 px-8 py-2.5 text-white rounded hover:bg-indigo-600 cursor-pointer transition-all duration-200">

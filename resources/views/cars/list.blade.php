@@ -1,6 +1,6 @@
 @if ($cars->isNotEmpty())
     @foreach ($cars as $car)
-        <a href="{{ route('CarDetail', $car->slug) }}">
+        <a href="{{ route('CarDetail', $car->uuid) }}">
             <div
                 class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
@@ -14,7 +14,7 @@
                     @endif
 
                     <div class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                        <span class="font-semibold">${{ $car->pricePerDay }}</span>
+                        <span class="font-semibold">₹{{ number_format($car->pricePerDay) }}</span>
                         <span class="font-semibold text-white/80 text-sm">/day</span>
                     </div>
                 </div>

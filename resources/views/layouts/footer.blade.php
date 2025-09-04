@@ -12,10 +12,10 @@
                </p>
 
                <div class="flex items-center gap-3 mt-6">
-                   <a href="#"><i class="ri-facebook-fill text-xl"></i></a>
-                   <a href="#"><i class="ri-instagram-line text-xl"></i></a>
-                   <a href="#"><i class="ri-twitter-line text-xl"></i></a>
-                   <a href="#"><i class="ri-mail-line text-xl"></i></a>
+                   <a href="https://www.facebook.com/"><i class="ri-facebook-fill text-xl"></i></a>
+                   <a href="https://www.instagram.com/"><i class="ri-instagram-line text-xl"></i></a>
+                   <a href="https://x.com/"><i class="ri-twitter-line text-xl"></i></a>
+                   <a href="https://accounts.google.com/"><i class="ri-mail-line text-xl"></i></a>
                </div>
            </div>
 
@@ -25,25 +25,14 @@
                <h2 class="text-base font-medium uppercase text-gray-800">Quick Links</h2>
                <ul class="text-sm flex flex-col gap-1.5 mt-3">
                    <li><a href="{{ route('home') }}">Home</a></li>
-                   <li><a href="">About Us</a></li>
+                   <li><a href="{{ route('AboutUs') }}">About Us</a></li>
                    <li><a href="{{ route('cars') }}">Browse Cars</a></li>
-                   <li><a href="#">Terms of Service</a></li>
-                   <li><a href="#">Privacy Policy</a></li>
+                   <li><a href="{{ route('TermsOfService') }}">Terms of Service</a></li>
+                   <li><a href="{{ route('PrivacyPolicy') }}">Privacy Policy</a></li>
                </ul>
 
            </div>
 
-
-           {{-- <div>
-               <h2 class="text-base font-medium uppercase text-gray-800">Resources</h2>
-               <ul class="text-sm flex flex-col gap-1.5 mt-3">
-                   <li><a href="#">Help Center</a></li>
-                   <li><a href="#">Terms of Service</a></li>
-                   <li><a href="#">Privacy Policy</a></li>
-                   <li><a href="#">Insurance</a></li>
-               </ul>
-
-           </div> --}}
 
            <div>
                <h2 class="text-base font-medium uppercase text-gray-800">Contact</h2>
@@ -61,9 +50,9 @@
        <div class="flex flex-col md:flex-row gap-2 items-center justify-between py-4">
            <p>© {{ date('Y') }} CarRental. All Right Reserved!</p>
            <ul class="flex items-center gap-4">
-               <li><a href="#">Privacy</a></li>
+               <li><a href="{{ route('PrivacyPolicy') }}">Privacy</a></li>
                <li>|</li>
-               <li><a href="#">Terms</a></li>
+               <li><a href="{{ route('TermsOfService') }}">Terms</a></li>
                <li>|</li>
                <li><a href="#">Cookies</a></li>
            </ul>

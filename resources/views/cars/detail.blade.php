@@ -53,42 +53,17 @@
 
                     <div class="pt-10">
                         <h1 class="font-medium text-xl mb-3">Features</h1>
+                        @php
+                            $features = json_decode($carDetail->features, true);
+                        @endphp
                         <ul class="grid md:grid-cols-2 gap-2 grid-cols-1">
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                360 Camera
+                            @foreach ($features as $item)
+                                <li class="flex items-center text-gray-500">
+                                    <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
+                                    {{ $item }}
 
-                            </li>
-
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                Bluetooth
-
-                            </li>
-
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                GPS
-
-                            </li>
-
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                Heated Seats
-
-                            </li>
-
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                Rear View
-
-                            </li>
-
-                            <li class="flex items-center text-gray-500">
-                                <i class="ri-arrow-right-circle-line mr-2 text-xl text-blue-500"></i>
-                                Mirror
-
-                            </li>
+                                </li>
+                            @endforeach
 
 
                         </ul>
@@ -101,7 +76,9 @@
                     @csrf
                     <div class="h-max shadow-lg sticky top-0 left-0 rounded-xl p-6 text-gray-500 space-y-6">
                         <p class="flex items-center justify-between text-2xl text-gray-800 font-semibold" id="price">
-                            ${{ $carDetail->pricePerDay }} <span class="text-base font-normal text-gray-400">per day</span>
+                            ₹{{ number_format($carDetail->pricePerDay) }} /- <span
+                                class="text-base font-normal text-gray-400">per day</span>
+
                         </p>
                         <hr class="border border-slate-200 my-6" />
                         <input type="text" name="car_id" value="{{ $carDetail->id }}" hidden

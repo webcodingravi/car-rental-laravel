@@ -66,14 +66,12 @@
                         <div class="flex flex-col justify-between gap-6 md:col-span-1">
                             <div class="text-sm text-gray-500 text-right">
                                 <p>Total Price</p>
-                                <h1 class="text-2xl font-semibold text-indigo-500">${{ $booking->price }}</h1>
+                                <h1 class="text-2xl font-semibold text-indigo-500">₹{{ number_format($booking->price) }}
+                                </h1>
                                 <p>Booked on {{ \Carbon\Carbon::parse($booking->created_at)->format('d M, Y h:i:A') }}
                                 </p>
                             </div>
                         </div>
-
-
-
 
                     </div>
                 @endforeach

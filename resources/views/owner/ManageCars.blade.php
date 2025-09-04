@@ -34,7 +34,7 @@
                                 </td>
 
                                 <td class="p-3 max-md:hidden">SUV</td>
-                                <td class="p-3">${{ $car->pricePerDay }}/day</td>
+                                <td class="p-3">${{ number_format($car->pricePerDay) }}/day</td>
 
                                 <td class="p-3 max-md:hidden">
                                     @if ($car->isAvailable == 1)

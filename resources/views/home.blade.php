@@ -2,11 +2,11 @@
 @section('content')
     <main>
         <section
-            class="hero bg-slate-100 w-full flex flex-col gap-12 justify-center md:items-center min-h-screen p-7 md:p-0">
-            <h1 class="text-5xl font-bold">Luxury cars on Rent</h1>
+            class="hero overflow-hidden bg-slate-100 w-full flex flex-col gap-12 justify-center md:items-center min-h-screen p-7 md:p-0">
+            <h1 class="text-5xl font-bold animate__animated animate__backInDown">Luxury cars on Rent</h1>
             <form action="{{ route('cars') }}" method="get">
                 <div
-                    class="flex flex-col md:flex-row gap-9 md:items-center items-start bg-white px-12 py-6 text-slate-700 md:rounded-full rounded-xl text-center">
+                    class="flex flex-col md:flex-row gap-9 md:items-center items-start bg-white px-12 py-6 text-slate-700 md:rounded-full rounded-xl text-center animate__animated animate__backInDown">
                     <div class="flex flex-col gap-1 items-start">
                         <label>Pickup Location</label>
                         <select name="location" class="focus:outline-none bg-slate-100">
@@ -46,7 +46,8 @@
 
             </form>
 
-            <img src="{{ asset('image/main_car.png') }}" class="md:h-85 h-35 " alt="">
+            <img src="{{ asset('image/main_car.png') }}" class="md:h-85 h-35 animate__animated animate__backInRight"
+                alt="">
             </div>
         </section>
 
@@ -65,7 +66,7 @@
                 <div class="grid md:grid-cols-4 grid-cols-1 gap-8 md:px-32 p-6 mt-8">
 
                     @foreach ($featuresCars as $car)
-                        <a href="{{ route('CarDetail', $car->slug) }}">
+                        <a href="{{ route('CarDetail', $car->uuid) }}">
                             <div
                                 class="shadow-lg rounded-xl overflow-hidden group hover:-translate-y-1 transition-all duration-500 cursor-pointer">
 
@@ -81,7 +82,7 @@
 
                                     <div
                                         class="px-3 py-2 rounded-lg text-white absolute right-4 bottom-4 bg-black/40 backdrop-blur-sm">
-                                        <span class="font-semibold">${{ $car->pricePerDay }}</span>
+                                        <span class="font-semibold">₹{{ number_format($car->pricePerDay) }}</span>
                                         <span class="font-semibold text-white/80 text-sm">/day</span>
                                     </div>
                                 </div>
@@ -138,7 +139,7 @@
         {{-- Banner section --}}
         <section
             class="banner bg-gradient-to-r from-[#615fff] to [#A9CFFF]  rounded-2xl overflow-hidden flex flex-col md:flex-row md:items-start items-center justify-between  pt-10 mx-6 md:mx-32 px-8 ">
-            <div class="text-white ">
+            <div class="text-white animate__animated animate__backInDown">
                 <h2 class="text-3xl font-medium">Do You Own a Luxury Car?</h2>
                 <p class="mt-2">Mentize your vehicle effortlessly by listing it on CarRental.</p>
                 <p class='mb-9'>We take care of insurance, driver verification and secure payments - so you can
@@ -151,7 +152,8 @@
 
             </div>
 
-            <img src="{{ asset('image/banner_car_image.png') }}" class="mt-10" alt="car">
+            <img src="{{ asset('image/banner_car_image.png') }}" class="mt-10 animate__animated animate__backInRight"
+                alt="car">
 
         </section>
 
